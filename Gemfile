@@ -25,6 +25,7 @@ end
 gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
+gem 'devise-bootstrap-views'
 gem 'faker', '~> 1.5'
 gem 'font-awesome-rails'
 gem 'friendly_id', '~> 5.1.0'
