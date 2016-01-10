@@ -1,0 +1,11 @@
+<div class="col-md-12">
+  <h1>
+    <%= @topic.title %>
+    <% if current_user == @topic.user %>
+      <%= link_to "Delete Topic", topic_path, method: :delete, class: 'btn btn-sm btn-default pull-right' %>
+    <% end %>
+  </h1>
+</div>
+
+
+
