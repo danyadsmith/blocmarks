@@ -15,7 +15,16 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "font-awesome";
 /*
  *= require devise-bootstrap-views
  */
+
+ a.icon-btn {
+    color: #fff;
+    border-radius:50px;
+    display:inline-block;
+    height:22px;
+    padding:1px 6px;
+    width:22px;    
+ }

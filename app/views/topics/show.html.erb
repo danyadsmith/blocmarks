@@ -2,9 +2,20 @@
   <h1>
     <%= @topic.title %>
     <% if current_user == @topic.user %>
-      <%= link_to "Delete Topic", topic_path, method: :delete, class: 'btn btn-sm btn-default pull-right' %>
+      <div class="pull-right">
+      <div class="btn-group">
+        <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-sm btn-default' %>
+        <%= link_to "Delete Topic", topic_path, method: :delete, class: 'btn btn-sm btn-default' %>
+      </div>
+        <%= link_to "New Bookmark", new_topic_bookmark_path(@topic), class: 'btn btn-sm btn-default' %>
+      </div>  
     <% end %>
   </h1>
+  <% @topic.bookmarks.each do |bookmark| %>
+  <div class="col-md-6">
+    <%= render partial: 'bookmarks/bookmark_card', locals: {bookmark: bookmark} %>
+  </div>
+  <% end %>
 </div>
 
 

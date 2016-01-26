@@ -8,5 +8,8 @@
   <h3>
     <%= render partial: 'topic', locals: {topic: topic} %>
   </h3>
+  <% topic.bookmarks.each do |bookmark| %>
+    <%= render partial: 'bookmarks/bookmark', locals: {bookmark: bookmark} %>
+  <% end %>
 </div>
 <% end %>

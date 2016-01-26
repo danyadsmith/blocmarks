@@ -1,0 +1,6 @@
+<%= simple_form_for [@topic, @bookmark] do |f| %>
+  <%= f.input :url_link_text, label: "Link Text" %>
+  <%= f.input :url, label: "URL" %>
+  <%= f.input :url_description, as: :text, label: "Description" %>
+  <%= f.submit 'Save bookmark', class: "btn btn-success" %>
+<% end %>

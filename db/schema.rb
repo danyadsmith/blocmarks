@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160103073125) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.string   "url"
+    t.string   "url_link_text"
     t.string   "url_description"
     t.integer  "topic_id"
     t.datetime "created_at",      null: false

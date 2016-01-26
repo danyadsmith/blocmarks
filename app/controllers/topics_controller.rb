@@ -7,7 +7,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
   end
 
   def new
@@ -29,6 +28,13 @@ class TopicsController < ApplicationController
   end
 
   def update
+    @topic.assign_attributes(topic_params)
+    if @topic.save
+      redirect_to @topic, notice: "Topic was updated successfully"
+    else
+      flash[:error] = "Error updating topic. Please try again."
+      render :edit
+    end
   end
 
   def destroy
