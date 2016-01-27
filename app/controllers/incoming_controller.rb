@@ -7,7 +7,7 @@ class IncomingController < ApplicationController
     user = User.where(email: params["sender"]).first
     topic = Topic.where(topic: params["Subject"]).first
 
-    unless topic
+    if topic.nil?
       new_topic = Topic.new
       new_topic.user_id = user.id
       new_topic.title = params["Subject"]
