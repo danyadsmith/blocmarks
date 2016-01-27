@@ -1,6 +1,8 @@
 class IncomingController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :protect_from_forgery, only: [:create]
+  skip_before_action :authenticate_user!, only: [:create]
 
   def create
     puts params.inspect
