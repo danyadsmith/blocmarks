@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :topics do
     resources :bookmarks
   end
-  post :incoming, to: "incoming#create"
+  post :incoming, to: 'incoming#create'
   get 'pages/index'
   get 'about' => 'pages#about'
   root 'pages#index'

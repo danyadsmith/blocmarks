@@ -6,14 +6,12 @@ class IncomingController < ApplicationController
     puts "--- Get User and Topic from Incoming Email ---"
     user = User.where(email: params["sender"]).first
 
-    if user.nil?
-      # Do Nothing
-    else
-      puts "User: #{user.username}"
+    if user.present?
+      puts "User: #{user.inspect}"
       topic = Topic.where(topic: params["Subject"]).first
-      puts "Topic: #{topic.title}"
+      puts "Topic: #{topic.inspect}"
 
-      if topic.nil?
+      unless topic.present?
         puts "--- Creating New Topic ---"
         new_topic = Topic.new
         new_topic.user_id = user.id
@@ -23,7 +21,7 @@ class IncomingController < ApplicationController
 
       puts "--- Attempting to Create New Bookmark ---"
       bookmark_data = params["stripped-text"].split("\r\n")
-      
+      puts "Bookmark Data: #{bookmark_data.inspect}"
       bookmark_link_text = bookmark_data[0] 
       bookmark_url = bookmark_data[1] 
       bookmark_description = bookmark_data[2] 
@@ -34,7 +32,9 @@ class IncomingController < ApplicationController
       new_bookmark.url_link_text = bookmark_link_text
       new_bookmark.description = bookmark_description
       new_bookmark.save
-
+      puts "New Bookmark: #{new_bookmark.inspect}"
     end
+
+    head 200
   end
 end
