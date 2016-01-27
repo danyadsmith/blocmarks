@@ -21,6 +21,8 @@ class IncomingController < ApplicationController
         new_topic.user_id = user.id
         new_topic.title = params["Subject"]
         new_topic.save
+        topic = new_topic
+        puts "Topic: #{topic.inspect}"
       end
 
       puts "--- Attempting to Create New Bookmark ---"
