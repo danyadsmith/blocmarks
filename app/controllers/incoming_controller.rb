@@ -11,6 +11,7 @@ class IncomingController < ApplicationController
       new_topic = Topic.new
       new_topic.user_id = user.id
       new_topic.title = params["Subject"]
+      new_topic.save
     end
 
     bookmark_data = params["stripped-text"].split("\r\n")
