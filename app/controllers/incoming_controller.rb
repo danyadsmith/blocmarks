@@ -12,7 +12,7 @@ class IncomingController < ApplicationController
 
     if user.present?
       puts "User: #{user.inspect}"
-      topic = Topic.where(topic: params["Subject"]).first
+      topic = Topic.where(title: params["Subject"]).first
       puts "Topic: #{topic.inspect}"
 
       unless topic.present?
