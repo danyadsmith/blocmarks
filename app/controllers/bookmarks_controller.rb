@@ -11,10 +11,12 @@ class BookmarksController < ApplicationController
 
   def new
     @bookmark = Bookmark.new
+    authorize @bookmark
   end
 
   def create
     @bookmark = Bookmark.new(bookmark_params)
+    authorize @bookmark
     @bookmark.topic_id = @topic.id
     if @bookmark.save
       redirect_to [@topic, @bookmark], notice: "Bookmark was created successfully."
@@ -25,10 +27,12 @@ class BookmarksController < ApplicationController
   end
 
   def edit
+    authorize @bookmark
   end
 
   def update
     @bookmark.assign_attributes(bookmark_params)
+    authorize @bookmark
     if @bookmark.save
       redirect_to [@topic, @bookmark], notice: "Bookmark was created successfully."
     else
@@ -38,6 +42,7 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
+    authorize @bookmark
     if @bookmark.destroy
       redirect_to @topic, notice: "Bookmark was deleted successfully."
     else

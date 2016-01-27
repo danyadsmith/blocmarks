@@ -1,15 +1,17 @@
 <div class="col-md-12">
   <h1>
     <%= @topic.title %>
-    <% if current_user == @topic.user %>
       <div class="pull-right">
       <div class="btn-group">
+      <% if policy(@topic).edit? %>
         <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-sm btn-default' %>
+      <% end %>
+      <% if policy(@topic).destroy? %>
         <%= link_to "Delete Topic", topic_path, method: :delete, class: 'btn btn-sm btn-default' %>
+      <% end %>
       </div>
         <%= link_to "New Bookmark", new_topic_bookmark_path(@topic), class: 'btn btn-sm btn-default' %>
       </div>  
-    <% end %>
   </h1>
   <% @topic.bookmarks.each do |bookmark| %>
   <div class="col-md-6">
