@@ -36,7 +36,7 @@ class IncomingController < ApplicationController
       new_bookmark.topic_id = topic.id 
       new_bookmark.url = bookmark_url
       new_bookmark.url_link_text = bookmark_link_text
-      new_bookmark.description = bookmark_description
+      new_bookmark.url_description = bookmark_description
       new_bookmark.save
       puts "New Bookmark: #{new_bookmark.inspect}"
     end
