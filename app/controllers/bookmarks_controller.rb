@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :load_topic
   before_action :load_bookmark, only: [:show, :edit, :update, :destroy]
 
@@ -18,6 +19,7 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(bookmark_params)
     authorize @bookmark
     @bookmark.topic_id = @topic.id
+    @bookmark.user_id = current_user.id
     if @bookmark.save
       redirect_to [@topic, @bookmark], notice: "Bookmark was created successfully."
     else
@@ -51,6 +53,18 @@ class BookmarksController < ApplicationController
     end
   end
 
+  def favorite
+    @bookmark = Bookmark.find(params[:bookmarks])
+    @bookmark.favorite_for(current_user)
+    redirect_to [@topic]
+  end
+
+  def unfavorite
+    @bookmark = Bookmark.find(params[:bookmarks])
+    @bookmark.delete_favorite_for(current_user)
+    redirect_to [@topic]
+  end
+
   private
 
   def load_bookmark
@@ -62,7 +76,7 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:url, :url_link_text, :url_description, :topic_id)
+    params.require(:bookmark).permit(:url, :url_link_text, :url_description, :topic_id, :user_id)
   end
 
 end

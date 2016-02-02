@@ -1,5 +1,8 @@
 <div class="bookmark">
-  <h4><%= link_to bookmark.url_link_text, bookmark.url, target: "_blank" %></h4>
+  <h4>
+    <%= link_to bookmark.url_link_text, bookmark.url, target: "_blank" %>
+    <div class="badge"><%= pluralize(bookmark.votes.count, "Like") %></div>
+  </h4>
   <p><small><%= bookmark.url_description %></small></p>
   <div class="interact">
   <% if policy(bookmark).edit?  %>
@@ -12,7 +15,11 @@
       <i class="fa fa-trash-o"></i>
     <% end %>
   <% end %>
+  <%= link_to favorite_topic_bookmark_path(bookmarks: bookmark, topic_id: bookmark.topic_id), class: "#{bookmark.has_favorite_for(current_user) ? 'icon-btn disabled' : 'icon-btn btn-success'}", method: :post do %>
     <i class="fa fa-thumbs-o-up"></i>
+  <% end %>
+  <%= link_to unfavorite_topic_bookmark_path(bookmarks: bookmark, topic_id: bookmark.topic_id), class: "#{!bookmark.has_favorite_for(current_user) ? 'icon-btn disabled' : 'icon-btn btn-danger'}", method: :post do %>
     <i class="fa fa-thumbs-o-down"></i>
+  <% end %>
   </div>
 </div>
