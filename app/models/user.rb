@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   validates :username, :presence => true, :uniqueness => true
 
   has_many :topics
+  has_many :bookmarks
+  has_many :votes
 end

@@ -1,0 +1,13 @@
+<div class="col-md-6">
+<h2>My Bookmarks</h2>
+<% @my_bookmarks.each do |bookmark| %>
+      <%= render partial: 'bookmarks/bookmark_card', locals: {bookmark: bookmark} %>
+<% end %>
+  </div>
+<div class="col-md-6">
+<h2>My Likes</h2>
+
+<% @my_likes.each do |bookmark| %>
+      <%= render partial: 'bookmarks/bookmark_card', locals: {bookmark: bookmark} %>
+<% end %>
+  </div>
